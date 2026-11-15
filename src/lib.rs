@@ -34,6 +34,7 @@
 #![allow(dead_code, unused_variables)]
 
 pub mod error;
+pub mod memtable;
 pub mod storage;
 
 pub use error::{Error, Result};
