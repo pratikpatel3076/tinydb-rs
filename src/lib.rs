@@ -37,5 +37,6 @@ pub mod error;
 pub mod index;
 pub mod memtable;
 pub mod storage;
+pub mod txn;
 
 pub use error::{Error, Result};
