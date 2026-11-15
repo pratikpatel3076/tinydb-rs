@@ -36,6 +36,7 @@
 pub mod error;
 pub mod index;
 pub mod memtable;
+pub mod sql;
 pub mod storage;
 pub mod txn;
 pub mod wal;
