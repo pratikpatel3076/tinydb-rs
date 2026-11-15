@@ -38,6 +38,7 @@
 //! - Memory accounting or a size limit.
 
 use std::collections::BTreeMap;
+use std::ops::Bound;
 
 use crate::error::Result;
 
@@ -63,21 +64,23 @@ impl MemTable {
     /// Should not allocate until the first `put` (or let `BTreeMap` do what it
     /// wants; this is not a performance-critical decision).
     pub fn new() -> Self {
-        todo!("P1: create the backing BTreeMap and return Self")
+        MemTable {
+            entries: BTreeMap::new(),
+        }
     }
 
     /// Number of live entries.
     ///
     /// Overwrites do not increase this; deletes do decrease it.
     pub fn len(&self) -> usize {
-        todo!("P1: self.entries.len()")
+        self.entries.len()
     }
 
     /// True when there are no live entries.
     ///
     /// Exists alongside [`MemTable::len`] because Clippy (rightly) expects it.
     pub fn is_empty(&self) -> bool {
-        todo!("P1: self.entries.is_empty()")
+        self.entries.is_empty()
     }
 
     /// Look up a key.
@@ -85,7 +88,7 @@ impl MemTable {
     /// `None` for a missing key. Must not mutate or insert anything: a read of a
     /// missing key must not change [`MemTable::len`].
     pub fn get(&self, key: &[u8]) -> Result<Option<Value>> {
-        todo!("P1: self.entries.get(key).cloned()")
+        Ok(self.entries.get(key).cloned())
     }
 
     /// Insert or replace a value.
@@ -96,7 +99,8 @@ impl MemTable {
     /// Edge case: replacing an existing key must keep exactly one entry and
     /// must make the new value immediately visible to `get` and `scan`.
     pub fn put(&mut self, key: impl Into<Key>, value: impl Into<Value>) -> Result<()> {
-        todo!("P1: self.entries.insert(key.into(), value.into())")
+        self.entries.insert(key.into(), value.into());
+        Ok(())
     }
 
     /// Remove a key.
@@ -104,7 +108,7 @@ impl MemTable {
     /// Returns `Ok(true)` if the key was present, `Ok(false)` if it was already
     /// absent. A missing key is not an error.
     pub fn delete(&mut self, key: &[u8]) -> Result<bool> {
-        todo!("P1: self.entries.remove(key).is_some()")
+        Ok(self.entries.remove(key).is_some())
     }
 
     /// Range scan in ascending key order.
@@ -119,13 +123,42 @@ impl MemTable {
     ///   between.
     /// - The scan must see the table as of the call (no iterator borrow escapes).
     pub fn scan(&self, start: Option<&[u8]>, end: Option<&[u8]>) -> Result<Vec<(Key, Value)>> {
-        todo!("P1: build a half-open RangeBounds and clone the matching entries")
+        if let (Some(s), Some(e)) = (start, end) {
+            if s >= e {
+                return Ok(Vec::new());
+            }
+        }
+
+        let lower: Bound<&[u8]> = match start {
+            Some(s) => Bound::Included(s),
+            None => Bound::Unbounded,
+        };
+        let upper: Bound<&[u8]> = match end {
+            Some(e) => Bound::Excluded(e),
+            None => Bound::Unbounded,
+        };
+
+        Ok(self
+            .entries
+            .range::<[u8], _>((lower, upper))
+            .map(|(k, v)| (k.clone(), v.clone()))
+            .collect())
     }
 }
 
 impl Default for MemTable {
     /// Equivalent to [`MemTable::new`].
     fn default() -> Self {
-        todo!("P1: Self::new()")
+        Self::new()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn default_is_empty() {
+        assert!(MemTable::default().is_empty());
     }
 }
