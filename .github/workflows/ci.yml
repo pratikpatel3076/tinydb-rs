@@ -28,7 +28,7 @@ jobs:
       - run: cargo build --all-targets
       - run: cargo test --no-run
       # REQUIRED: add one line per phase the moment it goes green
-      # - run: cargo test --test phase1_memtable
+      - run: cargo test --test phase1_memtable
       # Informational only: shows overall progress without blocking
       - run: cargo test
         continue-on-error: true
