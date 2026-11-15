@@ -1,0 +1,24 @@
+[package]
+name = "tinydb-rs"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "A learning-first embedded database engine, built one phase at a time"
+license = "MIT"
+readme = "README.md"
+publish = false
+
+# HARD RULE: the engine uses `std` only. Do not add runtime dependencies here.
+[dependencies]
+
+# Test-only tooling. Keep this list short and boring.
+[dev-dependencies]
+proptest = "1"
+tempfile = "3"
+
+[lib]
+name = "tinydb_rs"
+path = "src/lib.rs"
+
+# The REPL binary lives at the conventional `src/bin/tinydb.rs` path, so cargo
+# discovers it automatically. Add an explicit [[bin]] only if that changes.

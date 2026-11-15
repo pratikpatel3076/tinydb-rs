@@ -1,0 +1,21 @@
+# Build output
+/target
+
+# Local scratch databases produced by the REPL or manual experiments
+*.db
+*.db.wal
+*.wal
+/tmp/
+
+# Editor / OS noise
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+*.swp
+
+# Rust backup files and coverage artifacts
+**/*.rs.bk
+*.profraw
+/coverage/
