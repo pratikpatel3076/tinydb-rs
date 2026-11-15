@@ -27,6 +27,7 @@
 //! column, wrong arity) or [`crate::Error::Type`] (literal not assignable to the
 //! column type). The planner is the right place for both; the executor should
 //! only fail for storage reasons or constraint violations.
+#![allow(dead_code, unused_variables)]
 
 use std::collections::HashMap;
 

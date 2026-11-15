@@ -74,6 +74,7 @@
 //! `tests/phase3_btree.rs` compares the tree against `std::collections::BTreeMap`
 //! under randomized insert/delete sequences (proptest). Treat that test as the
 //! specification: if the model and the tree disagree, the tree is wrong.
+#![allow(dead_code, unused_variables)]
 
 use crate::error::Result;
 use crate::storage::buffer_pool::BufferPool;

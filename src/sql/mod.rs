@@ -29,6 +29,7 @@
 //! - `WHERE` supports `=`, `!=`/`<>`, `<`, `<=`, `>`, `>=`, `AND`, `OR`, and
 //!   parentheses around boolean expressions. No `NOT` in P6 unless you want it.
 //! - Errors carry a byte offset into the original SQL text.
+#![allow(dead_code, unused_variables)]
 
 pub mod executor;
 pub mod lexer;

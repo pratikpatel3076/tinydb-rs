@@ -31,7 +31,6 @@
 // Scaffold-only allows: every body is `todo!()`, so parameters and fields are
 // intentionally unused until the owning phase lands. Delete these two lines as
 // the corresponding modules are implemented (CI will keep you honest).
-#![allow(dead_code, unused_variables)]
 
 pub mod error;
 pub mod index;

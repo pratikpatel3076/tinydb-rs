@@ -54,6 +54,7 @@
 //! deleter is not committed before `s`. Garbage-collect versions that no live
 //! snapshot can see. Read [`TransactionManager`]'s fields: a version chain per
 //! key is the natural upgrade from the current `BTreeMap<Key, Value>` shape.
+#![allow(dead_code, unused_variables)]
 
 use crate::error::Result;
 

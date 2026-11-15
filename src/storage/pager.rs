@@ -48,6 +48,7 @@
 //! - Sparse files or `fallocate`-style preallocation.
 //! - Checksums. Those belong to the B+tree node header in P3 and to the WAL in
 //!   P4, not to raw page I/O.
+#![allow(dead_code, unused_variables)]
 
 use std::fs::File;
 use std::path::{Path, PathBuf};

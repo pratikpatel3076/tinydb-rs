@@ -54,6 +54,7 @@
 //! - An error mid-way through a multi-row `INSERT`: decide whether earlier rows
 //!   in the same statement are visible. The clean answer is "validate all rows,
 //!   then append", which is also what a transaction would do.
+#![allow(dead_code, unused_variables)]
 
 use std::collections::HashMap;
 use std::path::PathBuf;

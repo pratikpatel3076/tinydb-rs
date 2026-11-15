@@ -60,6 +60,7 @@
 //! - Logical (row-level) records.
 //! - `Abort` doing undo work; P4's `Abort` simply means "do not replay".
 //!   Undo requires before-images, which arrive with real transactions (P7).
+#![allow(dead_code, unused_variables)]
 
 use std::fs::File;
 use std::path::{Path, PathBuf};

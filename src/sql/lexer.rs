@@ -34,6 +34,7 @@
 //!   is an error. Inside a string it is fine (and must be preserved as UTF-8).
 //! - `Token::text` for a string literal should hold the *decoded* text, not the
 //!   raw quoted form. Document that choice in the parser if you disagree.
+#![allow(dead_code, unused_variables)]
 
 use crate::error::Result;
 

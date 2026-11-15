@@ -57,6 +57,7 @@
 //!   error, not a column named `from`.
 //! - Deeply nested parentheses: return an error rather than blowing the stack on
 //!   adversarial input (a recursion depth limit of, say, 64 is plenty).
+#![allow(dead_code, unused_variables)]
 
 use crate::error::Result;
 

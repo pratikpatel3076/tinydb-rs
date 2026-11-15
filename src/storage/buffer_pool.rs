@@ -50,6 +50,7 @@
 //!   the pool should behave like `flush_all` (tests reopen the file after a
 //!   scope ends), or document loudly that it does not.
 //! - `page_count` must reflect allocated-but-not-yet-flushed pages.
+#![allow(dead_code, unused_variables)]
 
 use crate::error::Result;
 use crate::storage::pager::{Page, PageId, Pager};
